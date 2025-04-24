@@ -43,4 +43,3 @@ function decrypt(alphaBet, phrase, crypt){
 
 const decryptPhrase = decrypt(alphaBet, encryptPhrase, crypt);
 console.log(decryptPhrase);
-
