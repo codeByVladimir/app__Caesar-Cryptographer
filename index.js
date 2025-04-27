@@ -1,6 +1,24 @@
-const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
-const phrase = 'my name is vova';
+
+const titleNode = document.querySelector('.main__title');
+const inputNodes = document.querySelectorAll('.main__label');
+const reverseBtnNode = document.querySelector('.main__reverse-btn');
+const translateBtn = document.querySelector('.main__button');
+
+const alphaBet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
 const crypt = 3;
+let isReversed = false;
+
+reverseBtnNode.addEventListener('click', () => {
+    const phrase = inputNodes[0].value;
+    isReversed = !isReversed;
+    if(isReversed){
+        inputNodes[1].value = decrypt(alphaBet, phrase, crypt);
+        titleNode.textContent = 'Перевести Шифр в Текст'
+    }else{
+        inputNodes[1].value = encrypt(alphaBet, phrase, crypt)
+        titleNode.textContent = 'Перевести Текст в Шифр'
+    }
+})
 
 function encrypt(alphaBet, phrase, crypt){
     const toArrAlphaBet = alphaBet.split('');
@@ -20,8 +38,6 @@ function encrypt(alphaBet, phrase, crypt){
     return cryptWord.join('')
     
 }
-const encryptPhrase = encrypt(alphaBet, phrase, crypt);
-console.log(encryptPhrase);
 
 function decrypt(alphaBet, phrase, crypt){
     const toArrAlphaBet = alphaBet.split('');
@@ -41,5 +57,3 @@ function decrypt(alphaBet, phrase, crypt){
     return decryptWord.join('')
 }
 
-const decryptPhrase = decrypt(alphaBet, encryptPhrase, crypt);
-console.log(decryptPhrase);
